@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiApp6.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp6">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <ListView
+            Grid.Row="1"
+            Margin="20,10,20,0"
+            CachingStrategy="RecycleElement"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding Source={x:Static local:Blabla.Instance}, Path=IsRefreshing}"
+            ItemSelected="ListView_ItemSelected"
+            ItemsSource="{Binding Source={x:Static local:Blabla.Instance}, Path=Items}"
+            Refreshing="ListView_Refreshing">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label
+                            Margin="10,10,10,0"
+                            FontAttributes="Bold"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding .}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped" />
+            </ListView.GestureRecognizers>
+        </ListView>
+    </Grid>
+
+</ContentPage>
